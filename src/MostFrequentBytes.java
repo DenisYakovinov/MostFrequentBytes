@@ -40,7 +40,7 @@ public class MostFrequentBytes {
         String fileName = null;
         FileInputStream fileForRead = null;
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-                       fileName = reader.readLine();
+            fileName = reader.readLine();
         } catch (IOException e) {
         }
 
@@ -49,11 +49,11 @@ public class MostFrequentBytes {
             List<Integer> listOfFilesBytes = new ArrayList<>();
             Map<Integer, Integer> mapBytesAndCounts = new HashMap<>();
 
-            while (fileForRead.available() > 0)  {
+            while (fileForRead.available() > 0) {
                 listOfFilesBytes.add(fileForRead.read());
             }
 
-            for (int i = 0; i < listOfFilesBytes.size();) {
+            for (int i = 0; i < listOfFilesBytes.size(); ) {
                 int count = 0;
                 for (int x = 1; x < listOfFilesBytes.size(); x++) {
                     if (listOfFilesBytes.get(i).equals(listOfFilesBytes.get(x))) {
@@ -66,7 +66,7 @@ public class MostFrequentBytes {
                 listOfFilesBytes.remove(i);
             }
 
-            List <Map.Entry<Integer, Integer>> list = new ArrayList<>(mapBytesAndCounts.entrySet());
+            List<Map.Entry<Integer, Integer>> list = new ArrayList<>(mapBytesAndCounts.entrySet());
             Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
                 @Override
                 public int compare(Map.Entry<Integer, Integer> a, Map.Entry<Integer, Integer> b) {
@@ -81,8 +81,8 @@ public class MostFrequentBytes {
                     System.out.println(o1.getKey() + "  " + o1.getValue());
                 }
             }); */
-            final int  maxKey = list.get(0).getValue(); //  take the maximum value of the repetition counter
-            list.stream().filter(x-> x.getValue() == maxKey).forEach(x -> System.out.print(x.getKey() + " "));
+            final int maxKey = list.get(0).getValue(); //  take the maximum value of the repetition counter
+            list.stream().filter(x -> x.getValue() == maxKey).forEach(x -> System.out.print(x.getKey() + " "));
 
         } catch (IOException e1) {
         } finally {
