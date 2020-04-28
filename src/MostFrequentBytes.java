@@ -39,9 +39,8 @@ public class MostFrequentBytes {
     public static void main(String[] args) throws FileNotFoundException {
         String fileName = null;
         FileInputStream fileForRead = null;
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            fileName = reader.readLine();
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
+                       fileName = reader.readLine();
         } catch (IOException e) {
         }
 
@@ -74,15 +73,15 @@ public class MostFrequentBytes {
                     return b.getValue() - a.getValue();
                 }
             });
-            /* list.forEach(new Consumer() {
+            /*
+            list.forEach(new Consumer() {
                 @Override
                 public void accept(Object o) {
                     Map.Entry<Integer, Integer> o1= (Map.Entry<Integer, Integer>) o;
                     System.out.println(o1.getKey() + "  " + o1.getValue());
                 }
             }); */
-            Iterator<Map.Entry<Integer, Integer>> entries = mapBytesAndCounts.entrySet().iterator();
-            final int  maxKey = list.get(0).getValue();
+            final int  maxKey = list.get(0).getValue(); //  take the maximum value of the repetition counter
             list.stream().filter(x-> x.getValue() == maxKey).forEach(x -> System.out.print(x.getKey() + " "));
 
         } catch (IOException e1) {
