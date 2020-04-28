@@ -42,6 +42,7 @@ public class MostFrequentBytes {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             fileName = reader.readLine();
         } catch (IOException e) {
+        e.printStackTrace();
         }
 
         try {
