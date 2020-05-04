@@ -37,16 +37,14 @@ import java.util.stream.Collectors;
 public class MostFrequentBytes {
 
     public static void main(String[] args) throws FileNotFoundException {
-        String fileName = null;
-        FileInputStream fileForRead = null;
+        String fileName = new String();
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             fileName = reader.readLine();
         } catch (IOException e) {
         e.printStackTrace();
         }
 
-        try {
-            fileForRead = new FileInputStream(fileName);
+        try (FileInputStream fileForRead = new FileInputStream(fileName)) {
             List<Integer> listOfFilesBytes = new ArrayList<>();
             Map<Integer, Integer> mapBytesAndCounts = new HashMap<>();
 
@@ -86,14 +84,6 @@ public class MostFrequentBytes {
             list.stream().filter(x -> x.getValue() == maxKey).forEach(x -> System.out.print(x.getKey() + " "));
 
         } catch (IOException e1) {
-        } finally {
-            try {
-                if (fileForRead != null) {
-                    fileForRead.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
